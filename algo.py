@@ -81,9 +81,9 @@ def a_star_algo(coordinates, start, goal, adjacency_matrix):
                 g_score[neighbor] = tentative_g_score
                 f_score[neighbor] = tentative_g_score + euclidean_distance(coordinates[neighbor], coordinates[goal]) # heurestyka
                 
-                # Dodaj do open_set, jeśli nie ma
-                if neighbor not in [item[0] for item in open_set]:
-                    open_set.append((neighbor, f_score[neighbor]))
+                # Zaktualizuj open_set
+                open_set = [item for item in open_set if item[0] != neighbor]
+                open_set.append((neighbor, f_score[neighbor]))
 
     return "-", "Brak"  # Brak ścieżki między startem a metą
 
